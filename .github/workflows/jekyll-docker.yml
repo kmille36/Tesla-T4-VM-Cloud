@@ -1,0 +1,20 @@
+name: Deploy static page
+
+on:
+  push:
+    branches: [ main ]  # Trigger on changes to main branch
+
+jobs:
+  deploy:
+    runs-on: self-hosted  # Use your self-hosted runner
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy index.html to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./  # Root directory where index.html is
+          publish_branch: gh-pages
