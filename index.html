@@ -109,7 +109,7 @@
                   <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                   <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                 </span>
-                <span class="text-xs font-medium text-slate-300 uppercase tracking-wide">Online</span>
+                <span id="uptime-counter" class="text-xs font-medium text-slate-300 uppercase tracking-wide">Calculating...</span>
             </div>
 
             <h1 class="font-display text-5xl md:text-7xl font-bold tracking-tight mb-8 leading-tight">
@@ -356,6 +356,23 @@
         function closePaymentModal() {
             document.getElementById('paymentModal').classList.add('hidden');
         }
+
+        // Calculate and update uptime
+        function updateUptime() {
+            // Using 2025 as requested
+            const startDate = new Date('2025-12-15');
+            const now = new Date();
+            const diffTime = Math.max(0, now - startDate); // Ensure no negative uptime
+            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+            
+            const uptimeElement = document.getElementById('uptime-counter');
+            if (uptimeElement) {
+                uptimeElement.innerText = diffDays + " Days Uptime";
+            }
+        }
+        
+        // Initialize uptime on load
+        updateUptime();
     </script>
 <script type="module" src="/index.tsx"></script>
 </body>
