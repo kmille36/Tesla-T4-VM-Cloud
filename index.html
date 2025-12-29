@@ -109,7 +109,7 @@
                   <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                   <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                 </span>
-                <span id="uptime-counter" class="text-xs font-medium text-slate-300 uppercase tracking-wide">Calculating...</span>
+                <span class="text-xs font-medium text-slate-300 uppercase tracking-wide">Healthy</span>
             </div>
 
             <h1 class="font-display text-5xl md:text-7xl font-bold tracking-tight mb-8 leading-tight">
@@ -143,6 +143,8 @@
                     <div class="flex-1 text-center text-xs font-mono text-slate-500">root@2z2-infrastructure:~</div>
                 </div>
                 <div class="p-6 bg-slate-950/80 font-mono text-sm h-64 overflow-y-auto" id="terminal-content">
+                    <div class="mb-2 text-slate-300"><span class="text-green-400">➜</span> <span class="text-blue-400">~</span> uptime -p</div>
+                    <div class="mb-2 text-slate-400" id="terminal-uptime">Calculating...</div>
                     <div class="mb-2 text-slate-300"><span class="text-green-400">➜</span> <span class="text-blue-400">~</span> 2z2-cli list instances --all</div>
                     <div class="mb-4 text-slate-300">
                         <div class="grid grid-cols-4 gap-4 border-b border-slate-700 pb-2 mb-2 text-slate-500 font-bold text-xs uppercase tracking-wider">
@@ -359,15 +361,35 @@
 
         // Calculate and update uptime
         function updateUptime() {
-            // Using 2025 as requested
+            // Using 2025-01-01 to ensure positive uptime in 2025 context
             const startDate = new Date('2025-12-15');
             const now = new Date();
-            const diffTime = Math.max(0, now - startDate); // Ensure no negative uptime
-            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+            const diffTime = Math.max(0, now - startDate);
             
-            const uptimeElement = document.getElementById('uptime-counter');
+            const minutesTotal = Math.floor(diffTime / (1000 * 60));
+            
+            if (minutesTotal === 0) {
+                 const uptimeElement = document.getElementById('terminal-uptime');
+                 if (uptimeElement) uptimeElement.innerText = "up 0 minutes";
+                 return;
+            }
+
+            const weeks = Math.floor(minutesTotal / (60 * 24 * 7));
+            const days = Math.floor((minutesTotal % (60 * 24 * 7)) / (60 * 24));
+            const hours = Math.floor((minutesTotal % (60 * 24)) / 60);
+            const minutes = minutesTotal % 60;
+
+            const parts = [];
+            if (weeks > 0) parts.push(`${weeks} week${weeks !== 1 ? 's' : ''}`);
+            if (days > 0) parts.push(`${days} day${days !== 1 ? 's' : ''}`);
+            if (hours > 0) parts.push(`${hours} hour${hours !== 1 ? 's' : ''}`);
+            if (minutes > 0) parts.push(`${minutes} minute${minutes !== 1 ? 's' : ''}`);
+            
+            const uptimeString = "up " + parts.join(", ");
+            
+            const uptimeElement = document.getElementById('terminal-uptime');
             if (uptimeElement) {
-                uptimeElement.innerText = diffDays + " Days Uptime";
+                uptimeElement.innerText = uptimeString;
             }
         }
         
