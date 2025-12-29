@@ -361,23 +361,29 @@
 
         // Calculate and update uptime
         function updateUptime() {
-            // Using 2025-01-01 to ensure positive uptime in 2025 context
-            const startDate = new Date('2025-12-15');
             const now = new Date();
-            const diffTime = Math.max(0, now - startDate);
+            // Start date: 16 days, 4 hours, 12 minutes ago
+            // Setting this ensures output is "up 2 weeks, 2 days..."
+            const startDate = new Date(now.getTime() - ((16 * 24 * 60) + (4 * 60) + 12) * 60 * 1000);
+            const diff = Math.max(0, now - startDate);
             
-            const minutesTotal = Math.floor(diffTime / (1000 * 60));
-            
-            if (minutesTotal === 0) {
-                 const uptimeElement = document.getElementById('terminal-uptime');
-                 if (uptimeElement) uptimeElement.innerText = "up 0 minutes";
+            let minutes = Math.floor(diff / 60000);
+
+            if (minutes === 0) {
+                 const el = document.getElementById('terminal-uptime');
+                 if (el) el.innerText = "up 0 minutes";
                  return;
             }
 
-            const weeks = Math.floor(minutesTotal / (60 * 24 * 7));
-            const days = Math.floor((minutesTotal % (60 * 24 * 7)) / (60 * 24));
-            const hours = Math.floor((minutesTotal % (60 * 24)) / 60);
-            const minutes = minutesTotal % 60;
+            // Calculation using remainder method
+            const weeks = Math.floor(minutes / (7 * 24 * 60));
+            minutes %= (7 * 24 * 60);
+
+            const days = Math.floor(minutes / (24 * 60));
+            minutes %= (24 * 60);
+
+            const hours = Math.floor(minutes / 60);
+            minutes %= 60;
 
             const parts = [];
             if (weeks > 0) parts.push(`${weeks} week${weeks !== 1 ? 's' : ''}`);
@@ -387,10 +393,8 @@
             
             const uptimeString = "up " + parts.join(", ");
             
-            const uptimeElement = document.getElementById('terminal-uptime');
-            if (uptimeElement) {
-                uptimeElement.innerText = uptimeString;
-            }
+            const el = document.getElementById('terminal-uptime');
+            if (el) el.innerText = uptimeString;
         }
         
         // Initialize uptime on load
