@@ -1,0 +1,842 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Welcome to 2Z2 Platform</title>
+        <link
+            rel="icon"
+            type="image/svg+xml"
+            href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%230ea5e9' /><stop offset='100%25' stop-color='%234f46e5' /></linearGradient></defs><rect width='100' height='100' rx='20' fill='url(%23g)'/><text x='50' y='65' font-family='sans-serif' font-weight='900' font-size='50' fill='white' text-anchor='middle'>2Z2</text></svg>"
+        />
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+            rel="stylesheet"
+        />
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        fontFamily: {
+                            sans: ["Inter", "sans-serif"],
+                            display: ["Space Grotesk", "sans-serif"],
+                            mono: [
+                                "ui-monospace",
+                                "SFMono-Regular",
+                                "Menlo",
+                                "Monaco",
+                                "Consolas",
+                                "Liberation Mono",
+                                "Courier New",
+                                "monospace",
+                            ],
+                        },
+                        colors: {
+                            brand: {
+                                400: "#38bdf8",
+                                500: "#0ea5e9",
+                                600: "#0284c7",
+                                900: "#0c4a6e",
+                            },
+                            dark: {
+                                800: "#1e293b",
+                                900: "#0f172a",
+                                950: "#020617",
+                            },
+                        },
+                        animation: {
+                            "pulse-slow":
+                                "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+                            cursor: "cursor .75s step-end infinite",
+                        },
+                        keyframes: {
+                            cursor: {
+                                "0%, 100%": { opacity: "1" },
+                                "50%": { opacity: "0" },
+                            },
+                        },
+                    },
+                },
+            };
+        </script>
+        <style>
+            html {
+                scroll-padding-top: 5rem;
+            }
+            body {
+                background-color: #020617;
+                color: #f8fafc;
+            }
+            .glass {
+                background: rgba(30, 41, 59, 0.4);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            .glass-strong {
+                background: rgba(15, 23, 42, 0.8);
+                backdrop-filter: blur(16px);
+                border: 1px solid rgba(56, 189, 248, 0.2);
+            }
+            .gradient-text {
+                background: linear-gradient(to right, #38bdf8, #818cf8);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+        </style>
+        <!-- <link rel="stylesheet" href="/index.css"> -->
+    </head>
+    <body>
+        <!-- Navigation -->
+        <nav class="fixed w-full z-50 glass border-b-0">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-20">
+                    <div class="flex items-center gap-2">
+                        <div
+                            class="w-8 h-8 rounded bg-gradient-to-br from-brand-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-brand-500/20"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="h-5 w-5 text-white"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                                />
+                            </svg>
+                        </div>
+                        <span
+                            class="font-display font-bold text-xl tracking-tight text-white"
+                            >2Z2</span
+                        >
+                    </div>
+                    <div class="hidden md:flex items-center space-x-8">
+                        <a
+                            href="https://file.2z2.top"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="text-sm font-medium text-slate-300 hover:text-white transition-colors"
+                            >YouTube</a
+                        >
+                        <a
+                            href="https://discord.com/invite/xxvdvwmyJg"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="text-sm font-medium text-slate-300 hover:text-white transition-colors"
+                            >Discord</a
+                        >
+                        <a
+                            href="#features"
+                            class="text-sm font-medium text-slate-300 hover:text-white transition-colors"
+                            >Features</a
+                        >
+                        <a
+                            href="#pricing"
+                            class="text-sm font-medium text-slate-300 hover:text-white transition-colors"
+                            >Pricing</a
+                        >
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <a
+                            href="https://gpu.2z2.top"
+                            class="px-5 py-2.5 rounded-full bg-white text-slate-950 text-sm font-bold hover:bg-slate-100 transition-all shadow-[0_0_20px_rgba(255,255,255,0.2)]"
+                            >Start Free</a
+                        >
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+            <!-- Background Decoration -->
+            <div
+                class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-brand-500/20 rounded-full blur-[120px] -z-10"
+            ></div>
+            <div
+                class="absolute bottom-0 right-0 w-[600px] h-[600px] bg-indigo-600/10 rounded-full blur-[100px] -z-10"
+            ></div>
+
+            <div
+                class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10"
+            >
+                <div
+                    class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-800/50 border border-slate-700/50 mb-8 backdrop-blur-sm animate-fade-in"
+                >
+                    <span class="relative flex h-2 w-2">
+                        <span
+                            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"
+                        ></span>
+                        <span
+                            class="relative inline-flex rounded-full h-2 w-2 bg-green-500"
+                        ></span>
+                    </span>
+                    <span
+                        class="text-xs font-medium text-slate-300 uppercase tracking-wide"
+                        >Healthy</span
+                    >
+                </div>
+
+                <h1
+                    class="font-display text-5xl md:text-7xl font-bold tracking-tight mb-8 leading-tight"
+                >
+                    Powerfull Cloud Virtual Machine <br />
+                    <span class="gradient-text">for Development</span>
+                </h1>
+
+                <p
+                    class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-12 leading-relaxed"
+                >
+                    Spin up actual Windows virtual machines in your browser.
+                    Deploy applications, configure environments, and build
+                    projects on dedicated cloud hardware.
+                </p>
+
+                <div
+                    class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20"
+                >
+                    <a
+                        href="https://gpu.2z2.top/"
+                        class="w-full sm:w-auto px-8 py-4 rounded-lg bg-brand-600 hover:bg-brand-500 text-white font-semibold transition-all shadow-lg shadow-brand-500/25 flex items-center justify-center gap-2"
+                    >
+                        <svg
+                            class="w-5 h-5"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
+                            ></path>
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                            ></path>
+                        </svg>
+                        Start first VM
+                    </a>
+                    <a
+                        href="#pricing"
+                        class="w-full sm:w-auto px-8 py-4 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700 text-white font-semibold backdrop-blur-sm transition-all text-center flex items-center justify-center"
+                    >
+                        View Prices
+                    </a>
+                </div>
+
+                <!-- Terminal Visual -->
+                <div
+                    class="max-w-4xl mx-auto glass rounded-xl overflow-hidden shadow-2xl shadow-black/50 border border-slate-700/50 text-left"
+                >
+                    <div
+                        class="bg-slate-900/90 border-b border-slate-700/50 px-4 py-3 flex items-center gap-2"
+                    >
+                        <div class="flex gap-2">
+                            <div
+                                class="w-3 h-3 rounded-full bg-red-500/50"
+                            ></div>
+                            <div
+                                class="w-3 h-3 rounded-full bg-yellow-500/50"
+                            ></div>
+                            <div
+                                class="w-3 h-3 rounded-full bg-green-500/50"
+                            ></div>
+                        </div>
+                        <div
+                            class="flex-1 text-center text-xs font-mono text-slate-500"
+                        >
+                            root@2z2-infrastructure:~
+                        </div>
+                    </div>
+                    <div
+                        class="p-6 bg-slate-950/80 font-mono text-sm h-64 overflow-y-auto"
+                        id="terminal-content"
+                    >
+                        <div class="mb-2 text-slate-300">
+                            <span class="text-green-400">➜</span>
+                            <span class="text-blue-400">~</span> uptime -p
+                        </div>
+                        <div class="mb-2 text-slate-400" id="terminal-uptime">
+                            up 15 minutes
+                        </div>
+                        <div class="mb-2 text-slate-300">
+                            <span class="text-green-400">➜</span>
+                            <span class="text-blue-400">~</span> 2z2-cli list
+                            instances --all
+                        </div>
+                        <div class="mb-4 text-slate-300">
+                            <div
+                                class="grid grid-cols-3 gap-4 border-b border-slate-700 pb-2 mb-2 text-slate-500 font-bold text-xs uppercase tracking-wider"
+                            >
+                                <div>Instance</div>
+                                <div>OS Image</div>
+                                <div>Processor</div>
+                            </div>
+                            <div
+                                class="grid grid-cols-3 gap-4 mb-1.5 items-center"
+                            >
+                                <div>azure-win-01</div>
+                                <div class="text-blue-400">Windows 11</div>
+                                <div class="text-slate-300">INTEL XEON</div>
+                            </div>
+                        </div>
+                        <div class="mb-2 text-slate-300">
+                            <span class="text-green-400">➜</span>
+                            <span class="text-blue-400">~</span> nproc
+                        </div>
+                        <div class="mb-2 text-slate-400">16</div>
+                        <div class="mb-2 text-slate-300">
+                            <span class="text-green-400">➜</span>
+                            <span class="text-blue-400">~</span> free -m
+                        </div>
+                        <div class="mb-2 text-slate-400">
+                            total used free shared buff/cache available
+                        </div>
+                        <div class="mb-2 text-slate-400">
+                            Mem: 57344 12400 40000 100 4944 44000
+                        </div>
+                        <div class="mb-2 text-slate-300">
+                            <span class="text-green-400">➜</span>
+                            <span class="text-blue-400">~</span>
+                            <span class="animate-cursor">▌</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Grid -->
+        <section id="features" class="py-24 bg-slate-900/50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2
+                        class="font-display text-3xl md:text-4xl font-bold text-white mb-4"
+                    >
+                        Why 2Z2 Platform?
+                    </h2>
+                    <p class="text-slate-400">
+                        Built for engineers, by engineers.
+                    </p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Card 1 -->
+                    <div
+                        class="glass p-8 rounded-2xl hover:bg-slate-800/50 transition-colors group border-slate-800"
+                    >
+                        <div
+                            class="w-12 h-12 bg-brand-500/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-brand-500/20 transition-all"
+                        >
+                            <svg
+                                class="w-6 h-6 text-brand-400"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                                />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">
+                            Instant Provisioning
+                        </h3>
+                        <p class="text-slate-400 leading-relaxed">
+                            No more waiting for IT. Get full root access to a
+                            fresh VM in less than 15 minutes.
+                        </p>
+                    </div>
+                    <!-- Card 2 -->
+                    <div
+                        class="glass p-8 rounded-2xl hover:bg-slate-800/50 transition-colors group border-slate-800"
+                    >
+                        <div
+                            class="w-12 h-12 bg-purple-500/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-purple-500/20 transition-all"
+                        >
+                            <svg
+                                class="w-6 h-6 text-purple-400"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">
+                            Auto-Preconfigured
+                        </h3>
+                        <p class="text-slate-400 leading-relaxed">
+                            Skip the setup. Launch fully configured environments
+                            with all dependencies, tools, and datasets
+                            pre-installed so you can focus on working.
+                        </p>
+                    </div>
+                    <!-- Card 3 -->
+                    <div
+                        class="glass p-8 rounded-2xl hover:bg-slate-800/50 transition-colors group border-slate-800"
+                    >
+                        <div
+                            class="w-12 h-12 bg-pink-500/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-pink-500/20 transition-all"
+                        >
+                            <svg
+                                class="w-6 h-6 text-pink-400"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"
+                                />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">
+                            Sandboxed Environments
+                        </h3>
+                        <p class="text-slate-400 leading-relaxed">
+                            Run your own software. Freely install and execute
+                            your own applications, scripts, and tools in a
+                            completely isolated environment.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing -->
+        <section id="pricing" class="py-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2
+                        class="font-display text-3xl md:text-4xl font-bold text-white mb-4"
+                    >
+                        Simple Pricing
+                    </h2>
+                    <p class="text-slate-400">
+                        Pay only for the compute you use.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    <!-- Hobby -->
+                    <div class="glass p-8 rounded-2xl border border-slate-800">
+                        <h3 class="text-lg font-medium text-slate-300">
+                            Free Trial
+                        </h3>
+                        <div class="mt-4 mb-6">
+                            <span class="text-4xl font-bold text-white">$0</span
+                            ><span class="text-slate-500">/mo</span>
+                        </div>
+                        <ul class="space-y-4 mb-8 text-sm text-slate-400">
+                            <li class="flex gap-2">
+                                <svg
+                                    class="w-5 h-5 text-brand-500"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M5 13l4 4L19 7"
+                                    />
+                                </svg>
+                                30 minutes VM per day
+                            </li>
+                            <li class="flex gap-2">
+                                <svg
+                                    class="w-5 h-5 text-brand-500"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M5 13l4 4L19 7"
+                                    />
+                                </svg>
+                                Standard Windows VMs
+                            </li>
+                            <li class="flex gap-2">
+                                <svg
+                                    class="w-5 h-5 text-brand-500"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M5 13l4 4L19 7"
+                                    />
+                                </svg>
+                                Community Support
+                            </li>
+                        </ul>
+                        <a
+                            href="https://gpu.2z2.top/"
+                            class="block text-center w-full py-3 rounded-lg border border-slate-700 hover:bg-slate-800 text-white font-medium transition-colors"
+                            >Start Free</a
+                        >
+                    </div>
+
+                    <!-- Pay as you go -->
+                    <div
+                        class="relative p-8 rounded-2xl bg-gradient-to-b from-slate-800 to-slate-900 border border-brand-500/50 shadow-2xl shadow-brand-500/10 transform md:-translate-y-4"
+                    >
+                        <div
+                            class="absolute top-0 right-0 -mt-4 mr-4 bg-brand-500 text-white text-xs font-bold px-3 py-1 rounded-full uppercase"
+                        >
+                            Best Value
+                        </div>
+                        <h3 class="text-lg font-medium text-white">
+                            Pay As You Go
+                        </h3>
+                        <div class="mt-4 mb-6">
+                            <span class="text-4xl font-bold text-white"
+                                >$0.05</span
+                            ><span class="text-slate-500">/h</span>
+                        </div>
+                        <ul class="space-y-4 mb-8 text-sm text-slate-300">
+                            <li class="flex gap-2">
+                                <svg
+                                    class="w-5 h-5 text-brand-400"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M5 13l4 4L19 7"
+                                    />
+                                </svg>
+                                Pay only for what you use
+                            </li>
+                            <li class="flex gap-2">
+                                <svg
+                                    class="w-5 h-5 text-brand-400"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M5 13l4 4L19 7"
+                                    />
+                                </svg>
+                                Standard Windows VMs
+                            </li>
+                            <li class="flex gap-2">
+                                <svg
+                                    class="w-5 h-5 text-brand-400"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M5 13l4 4L19 7"
+                                    />
+                                </svg>
+                                Piority Support
+                            </li>
+                        </ul>
+                        <button
+                            class="w-full py-3 rounded-lg bg-brand-600 hover:bg-brand-500 text-white font-bold transition-colors"
+                            onclick="openPaymentModal()"
+                        >
+                            Get Started
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cloud Partner Section -->
+        <div class="border-y border-slate-800 bg-slate-950/50">
+            <div
+                class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col md:flex-row items-center justify-center gap-8"
+            >
+                <span
+                    class="text-slate-500 text-xs font-semibold uppercase tracking-widest"
+                    >Infrastructure Powered By</span
+                >
+                <div class="h-px w-16 bg-slate-800 md:h-8 md:w-px"></div>
+                <img
+                    src="https://www.c-sharpcorner.com/UploadFile/BlogImages/01232023170209PM/Azure%20Icon.png"
+                    alt="Microsoft Azure"
+                    class="w-48 md:w-64 h-auto opacity-80 hover:opacity-100 transition-opacity duration-300"
+                />
+            </div>
+        </div>
+
+        <footer class="border-t border-slate-800 bg-slate-950 py-12">
+            <div
+                class="max-w-7xl mx-auto px-4 text-center text-slate-500 text-sm"
+            >
+                <p>&copy; 2025 2Z2 Platform. All rights reserved.</p>
+            </div>
+        </footer>
+
+        <!-- Payment Modal -->
+        <div
+            id="paymentModal"
+            class="fixed inset-0 z-[100] hidden"
+            aria-labelledby="modal-title"
+            role="dialog"
+            aria-modal="true"
+        >
+            <!-- Backdrop -->
+            <div
+                class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm transition-opacity"
+                onclick="closePaymentModal()"
+            ></div>
+
+            <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+                <div
+                    class="flex min-h-full items-center justify-center p-4 text-center sm:p-0"
+                >
+                    <!-- Modal panel -->
+                    <div
+                        class="relative transform overflow-hidden rounded-2xl glass-strong text-left shadow-2xl shadow-black transition-all sm:my-8 sm:w-full sm:max-w-lg border border-slate-700"
+                    >
+                        <div class="px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+                            <div class="sm:flex sm:items-start">
+                                <div
+                                    class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-brand-500/10 sm:mx-0 sm:h-10 sm:w-10"
+                                >
+                                    <svg
+                                        class="h-6 w-6 text-brand-400"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke-width="1.5"
+                                        stroke="currentColor"
+                                        aria-hidden="true"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z"
+                                        />
+                                    </svg>
+                                </div>
+                                <div
+                                    class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left w-full"
+                                >
+                                    <h3
+                                        class="text-xl font-semibold leading-6 text-white"
+                                        id="modal-title"
+                                    >
+                                        Payment Options
+                                    </h3>
+                                    <div class="mt-2">
+                                        <p class="text-sm text-slate-400">
+                                            To purchase a subscription, please
+                                            contact us directly via:
+                                        </p>
+
+                                        <div class="mt-6 space-y-3">
+                                            <a
+                                                href="mailto:thuonghai2711+pay@gmail.com"
+                                                class="flex items-center gap-3 p-3 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700 transition-colors group"
+                                            >
+                                                <div
+                                                    class="p-2 rounded bg-slate-700 text-white group-hover:bg-brand-500 transition-colors"
+                                                >
+                                                    <svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        class="h-5 w-5"
+                                                        viewBox="0 0 20 20"
+                                                        fill="currentColor"
+                                                    >
+                                                        <path
+                                                            d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+                                                        />
+                                                        <path
+                                                            d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
+                                                        />
+                                                    </svg>
+                                                </div>
+                                                <div class="text-left">
+                                                    <div
+                                                        class="text-sm font-medium text-white"
+                                                    >
+                                                        Email Support
+                                                    </div>
+                                                    <div
+                                                        class="text-xs text-slate-400 break-all"
+                                                    >
+                                                        thuonghai2711+pay@gmail.com
+                                                    </div>
+                                                </div>
+                                            </a>
+
+                                            <a
+                                                href="https://fb.com/thuong.hai.581"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                class="flex items-center gap-3 p-3 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700 transition-colors group"
+                                            >
+                                                <div
+                                                    class="p-2 rounded bg-slate-700 text-white group-hover:bg-[#1877F2] transition-colors"
+                                                >
+                                                    <svg
+                                                        class="h-5 w-5"
+                                                        fill="currentColor"
+                                                        viewBox="0 0 24 24"
+                                                    >
+                                                        <path
+                                                            d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.791-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+                                                        />
+                                                    </svg>
+                                                </div>
+                                                <div class="text-left">
+                                                    <div
+                                                        class="text-sm font-medium text-white"
+                                                    >
+                                                        Facebook
+                                                    </div>
+                                                    <div
+                                                        class="text-xs text-slate-400"
+                                                    >
+                                                        fb.com/thuong.hai.581
+                                                    </div>
+                                                </div>
+                                            </a>
+
+                                            <div
+                                                class="flex items-center gap-3 p-3 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700 transition-colors group cursor-pointer"
+                                                onclick="navigator.clipboard.writeText('thuonghai2711#7681'); alert('Discord handle copied!')"
+                                            >
+                                                <div
+                                                    class="p-2 rounded bg-slate-700 text-white group-hover:bg-[#5865F2] transition-colors"
+                                                >
+                                                    <svg
+                                                        class="h-5 w-5"
+                                                        fill="currentColor"
+                                                        viewBox="0 0 24 24"
+                                                    >
+                                                        <path
+                                                            d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.086 2.157 2.419 0 1.334-.946 2.42-2.157 2.42z"
+                                                        />
+                                                    </svg>
+                                                </div>
+                                                <div class="text-left">
+                                                    <div
+                                                        class="text-sm font-medium text-white"
+                                                    >
+                                                        Discord
+                                                    </div>
+                                                    <div
+                                                        class="text-xs text-slate-400"
+                                                    >
+                                                        thuonghai2711#7681
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6 border-t border-slate-700/50 bg-slate-900/50"
+                        >
+                            <button
+                                type="button"
+                                class="mt-3 inline-flex w-full justify-center rounded-md bg-slate-800 px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-slate-700 hover:bg-slate-700 sm:mt-0 sm:w-auto transition-colors"
+                                onclick="closePaymentModal()"
+                            >
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function openPaymentModal() {
+                document
+                    .getElementById("paymentModal")
+                    .classList.remove("hidden");
+            }
+            function closePaymentModal() {
+                document.getElementById("paymentModal").classList.add("hidden");
+            }
+
+            // Calculate and update uptime
+            function updateUptime() {
+                const now = new Date();
+                // Start date set to Dec 14, 2025 to show realistic uptime in 2025
+                const startDate = new Date("2025-12-14");
+                const diff = Math.max(0, now - startDate);
+
+                let minutes = Math.floor(diff / 60000);
+
+                if (minutes === 0) {
+                    const el = document.getElementById("terminal-uptime");
+                    if (el) el.innerText = "up 0 minutes";
+                    return;
+                }
+
+                // Calculation using remainder method
+                const weeks = Math.floor(minutes / (7 * 24 * 60));
+                minutes %= 7 * 24 * 60;
+
+                const days = Math.floor(minutes / (24 * 60));
+                minutes %= 24 * 60;
+
+                const hours = Math.floor(minutes / 60);
+                minutes %= 60;
+
+                const parts = [];
+                if (weeks > 0)
+                    parts.push(`${weeks} week${weeks !== 1 ? "s" : ""}`);
+                if (days > 0) parts.push(`${days} day${days !== 1 ? "s" : ""}`);
+                if (hours > 0)
+                    parts.push(`${hours} hour${hours !== 1 ? "s" : ""}`);
+                if (minutes > 0)
+                    parts.push(`${minutes} minute${minutes !== 1 ? "s" : ""}`);
+
+                const uptimeString = "up " + parts.join(", ");
+
+                const el = document.getElementById("terminal-uptime");
+                if (el) el.innerText = uptimeString;
+            }
+
+            // Initialize uptime on load
+            updateUptime();
+        </script>
+        <!-- <script type="module" src="/index.tsx"></script> -->
+    </body>
+</html>
