@@ -89,6 +89,11 @@
           backdrop-filter: blur(10px);
           z-index: 1000;
           border-bottom: 1px solid var(--glass-border);
+          transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-hidden {
+          transform: translateY(-100%);
         }
 
         .nav-content {
@@ -755,6 +760,12 @@
     </footer>
 
     <script>
+        // DOM Elements
+        const nav = document.querySelector('nav');
+        const navToggle = document.getElementById('nav-toggle');
+        const navLinksContainer = document.getElementById('nav-links');
+        const heroImage = document.querySelector('.hero-image img');
+
         // Intersection Observer for fade-in animations
         const observerOptions = {
             threshold: 0.1
@@ -786,13 +797,34 @@
         `;
         document.head.appendChild(style);
 
-        // Hero Parallax effect
+        // Hero Parallax and Navbar Hide effect
+        let lastScrollY = window.scrollY;
+
         window.addEventListener('scroll', () => {
-            const heroImage = document.querySelector('.hero-image img');
+            const currentScrollY = window.scrollY;
+            
+            // Parallax
             if (heroImage && window.innerWidth > 968) {
-                let scroll = window.scrollY;
-                heroImage.style.transform = `perspective(1000px) rotateY(-10deg) rotateX(5deg) translateY(${scroll * 0.1}px)`;
+                heroImage.style.transform = `perspective(1000px) rotateY(-10deg) rotateX(5deg) translateY(${currentScrollY * 0.1}px)`;
             }
+
+            // Auto-hide Navbar
+            if (currentScrollY > lastScrollY && currentScrollY > 150) {
+                nav.classList.add('nav-hidden');
+                // Close mobile menu if open
+                if (navLinksContainer && navLinksContainer.classList.contains('open')) {
+                    navLinksContainer.classList.remove('open');
+                    const icon = navToggle.querySelector('i');
+                    if (icon) {
+                        icon.classList.add('fa-bars');
+                        icon.classList.remove('fa-times');
+                    }
+                }
+            } else {
+                nav.classList.remove('nav-hidden');
+            }
+            
+            lastScrollY = currentScrollY;
         });
 
         // Smooth scroll and Manual Active
@@ -885,9 +917,6 @@
         closeBtn.addEventListener('click', closeLightbox);
 
         // Mobile Menu Toggle
-        const navToggle = document.getElementById('nav-toggle');
-        const navLinksContainer = document.getElementById('nav-links');
-
         if(navToggle && navLinksContainer) {
             navToggle.addEventListener('click', () => {
                 navLinksContainer.classList.toggle('open');
