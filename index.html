@@ -64,7 +64,6 @@
           position: fixed;
           top: 0;
           width: 100%;
-          padding: 1.5rem 0;
           background: rgba(11, 12, 16, 0.8);
           backdrop-filter: blur(10px);
           z-index: 1000;
@@ -75,6 +74,7 @@
           display: flex;
           justify-content: space-between;
           align-items: center;
+          padding: 1.5rem 0;
         }
 
         .logo {
@@ -128,7 +128,7 @@
           min-height: 100vh;
           display: flex;
           align-items: center;
-          padding-top: 120px;
+          padding-top: 150px;
         }
 
         .hero::before {
@@ -531,6 +531,30 @@
         .close-lightbox:hover {
           opacity: 1;
         }
+        .status-bar {
+          background: rgba(118, 185, 0, 0.1);
+          color: var(--primary);
+          padding: 0.6rem 0;
+          font-size: 0.85rem;
+          font-weight: 600;
+          text-align: center;
+          border-top: 1px solid var(--glass-border);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+        }
+
+        .status-bar i {
+          font-size: 0.75rem;
+          animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+          0% { transform: scale(1); opacity: 1; }
+          50% { transform: scale(1.3); opacity: 0.6; }
+          100% { transform: scale(1); opacity: 1; }
+        }
     </style>
 </head>
 <body>
@@ -546,6 +570,10 @@
                 <a href="#showcase">Showcase</a>
                 <a href="#user-guide" class="btn-primary small">User Guide</a>
             </div>
+        </div>
+        <div class="status-bar">
+            <i class="fas fa-circle-check"></i>
+            <span>A new client patch is available! Please re-download and update</span>
         </div>
     </nav>
 
