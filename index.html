@@ -55,6 +55,12 @@
           padding: 0 2rem;
         }
 
+        @media (max-width: 480px) {
+          .container {
+            padding: 0 1rem;
+          }
+        }
+
         section {
           padding: 8rem 0;
         }
@@ -129,6 +135,7 @@
           display: flex;
           align-items: center;
           padding-top: 150px;
+          transition: padding-top 0.3s ease;
         }
 
         .hero::before {
@@ -261,8 +268,8 @@
         }
 
         .feature-card {
-          flex: 1 1 280px;
-          max-width: 360px;
+          flex: 1 1 240px;
+          max-width: 100%;
           padding: 2rem;
           background: var(--glass);
           border: 1px solid var(--glass-border);
@@ -317,7 +324,7 @@
 
         @media (max-width: 968px) {
           .screenshot-card {
-            flex: 0 0 280px;
+            flex: 0 0 240px;
           }
           .showcase-container {
             padding: 0 3rem;
@@ -386,13 +393,30 @@
           }
           
           .hero-content h1 {
-            font-size: 3rem;
+            font-size: clamp(2rem, 8vw, 3rem);
+            margin-bottom: 1.5rem;
           }
-          
+
           .hero-content p {
             margin: 0 auto 2.5rem;
+            font-size: clamp(1rem, 4vw, 1.15rem);
           }
-          
+
+          .hero {
+            padding-top: 180px;
+          }
+
+          .hero-actions {
+            justify-content: center;
+          }
+
+          .trust-badge {
+            margin: 1.5rem auto 0;
+            justify-content: center;
+            border-radius: 12px;
+            flex-wrap: wrap;
+          }
+
           .hero-image img {
             transform: none !important;
             max-width: 400px;
@@ -534,7 +558,7 @@
         .status-bar {
           background: rgba(118, 185, 0, 0.1);
           color: var(--primary);
-          padding: 0.6rem 0;
+          padding: 0.6rem 1.5rem;
           font-size: 0.85rem;
           font-weight: 600;
           text-align: center;
@@ -543,6 +567,7 @@
           align-items: center;
           justify-content: center;
           gap: 10px;
+          flex-wrap: wrap;
         }
 
         .status-bar i {
