@@ -10,6 +10,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
     <style>
+        html, body {
+          overflow-x: hidden;
+          width: 100%;
+          position: relative;
+        }
+
         :root {
           --primary: #76B900;
           --primary-glow: rgba(118, 185, 0, 0.3);
@@ -25,6 +31,8 @@
           margin: 0;
           padding: 0;
           box-sizing: border-box;
+          overflow-wrap: break-word;
+          word-wrap: break-word;
         }
 
         body {
@@ -58,6 +66,13 @@
         @media (max-width: 480px) {
           .container {
             padding: 0 1rem;
+          }
+          .btn-primary {
+            padding: 0.8rem 1.2rem;
+            font-size: 0.9rem;
+            width: 104%; /* Slight extra width for comfort, with box-sizing */
+            width: 100%;
+            text-align: center;
           }
         }
 
@@ -136,6 +151,7 @@
           align-items: center;
           padding-top: 150px;
           transition: padding-top 0.3s ease;
+          overflow: hidden; /* Clip background glow */
         }
 
         .hero::before {
@@ -410,6 +426,12 @@
             justify-content: center;
           }
 
+          .status-bar {
+            flex-direction: column;
+            gap: 5px;
+            padding: 1rem 1.5rem;
+          }
+
           .trust-badge {
             margin: 1.5rem auto 0;
             justify-content: center;
@@ -419,18 +441,18 @@
 
           .hero-image img {
             transform: none !important;
-            max-width: 400px;
+            max-width: 100%;
             margin: 0 auto;
           }
 
           .showcase-container {
-            padding: 0 40px;
+            padding: 0 10px;
           }
 
           .slider-btn {
-            width: 40px;
-            height: 40px;
-            font-size: 0.8rem;
+            width: 35px;
+            height: 35px;
+            font-size: 0.7rem;
           }
 
           /* Mobile Nav */
